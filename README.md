@@ -133,6 +133,52 @@ def ILP_select_nodes(matrix, K, shrink_K, rank):
     return sorted(true_select)
 ```
 
+Narrative threading is built on top of the KFC-selected keyframes. For `Video-MME`, the pipeline first reads the CLIP features of each 1 FPS frame and the query:
+
+```python
+vid_clip_feat = torch.from_numpy(
+    np.load(osp.join(self.data_root, "CLIP_video_emb", line["video"] + ".npz"))["embeddings"]
+).to("cuda:" + str(rank))
+query_clip_feat = torch.from_numpy(
+    np.load(osp.join(self.data_root, "CLIP_QA_emb", str(line["index"]) + ".npz"))["question_features"]
+).to("cuda:" + str(rank))
+```
+
+After the KFC step produces the keyframes, caption narratives are inserted between the selected frames through `insert_cap_into_frames(...)`:
+
+```python
+message = insert_cap_into_frames(message, frames, aux_data, fps_1_frames_index)
+```
+
+The core logic is:
+
+```python
+def insert_cap_into_frames(message, frames, aux_data, fps_1_index):
+    interval = fps_1_index[-1] - fps_1_index[0] - 1
+    max_num_cap = 30 * 7
+    captions = aux_data["frame_caption"]
+
+    if interval <= max_num_cap:
+        sel_captions = {i: captions[i] for i in range(fps_1_index[0] + 1, fps_1_index[-1])}
+    else:
+        sample_indices = np.linspace(
+            fps_1_index[0] + 1, fps_1_index[-1], max_num_cap
+        ).astype(int)
+        sel_captions = {i: captions[i] for i in sample_indices}
+
+    new_message = [{"type": "text", "value": ""}]
+    new_message.append(dict(type="image", value=frames[0]))
+
+    for idx in range(1, len(fps_1_index)):
+        start, end = fps_1_index[idx - 1], fps_1_index[idx]
+        middle_text = " ".join(v for k, v in sel_captions.items() if start < k < end)
+        if middle_text != "":
+            new_message.append(dict(type="text", value=middle_text))
+        new_message.append(dict(type="image", value=frames[idx]))
+
+    return new_message
+```
+
 ## Run
 
 Example commands are provided in `command/`:
