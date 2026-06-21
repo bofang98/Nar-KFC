@@ -2,7 +2,7 @@
 
 Code release for the `Nar-KFC` project, organized as a cleaned evaluation toolkit fork for long-video understanding experiments.
 
-This repository is based on `VLMEvalKit` and keeps the pieces needed to run the project code:
+This repository is based on [`VLMEvalKit`](https://github.com/open-compass/VLMEvalKit) and keeps the pieces needed to run the project code:
 
 - evaluation entrypoints in `run.py` and `vlmeval/`
 - benchmark helpers for video datasets such as `Video-MME`, `MLVU`, `LongVideoBench`, `MVBench`, and `TempCompass`
@@ -28,7 +28,7 @@ pip install -e .
 
 Different models may require different runtime environments and dependency versions. In practice, you should prepare model-specific environments before running evaluation, instead of assuming that a single Python environment will work for every model.
 
-Please adapt the environment according to the official `VLMEvalKit` requirements, especially for dependencies such as `transformers`, `torchvision`, and `flash-attn` when required by specific models. If a target model fails under the current environment, first check the corresponding version recommendations from the original `VLMEvalKit` repository and switch to a matching environment before evaluation.
+Please adapt the environment according to the official [`VLMEvalKit`](https://github.com/open-compass/VLMEvalKit) requirements, especially for dependencies such as `transformers`, `torchvision`, and `flash-attn` when required by specific models. If a target model fails under the current environment, first check the corresponding version recommendations from the original [`VLMEvalKit`](https://github.com/open-compass/VLMEvalKit) repository and switch to a matching environment before evaluation.
 
 ## Sampling Implementation Notes
 
@@ -157,7 +157,7 @@ You will likely need to adjust:
 
 ## Acknowledgement
 
-We thank `VLMEvalKit` for its strong support in evaluating multiple datasets and models, which provides the foundation for the benchmarking workflow used in this repository.
+We thank [`VLMEvalKit`](https://github.com/open-compass/VLMEvalKit) for its strong support in evaluating multiple datasets and models, which provides the foundation for the benchmarking workflow used in this repository.
 
 ## License
 
