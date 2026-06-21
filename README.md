@@ -205,6 +205,17 @@ You will likely need to adjust:
 
 We thank [`VLMEvalKit`](https://github.com/open-compass/VLMEvalKit) for its strong support in evaluating multiple datasets and models, which provides the foundation for the benchmarking workflow used in this repository.
 
+If you find this repository useful, please consider citing our paper:
+
+```bibtex
+@inproceedings{fang2026threading,
+  title={Threading Keyframe with Narratives: MLLMs as Strong Long Video Comprehenders},
+  author={Fang, Bo and Song, YuXin and Sun, Haoyuan and Wu, Qiangqiang and Wu, Wenhao and Chan, Antoni B.},
+  booktitle={The Thirteenth International Conference on Learning Representations (ICLR)},
+  year={2026}
+}
+```
+
 ## License
 
 See [LICENSE](LICENSE).
