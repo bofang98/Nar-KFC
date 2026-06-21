@@ -24,6 +24,12 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+## Environment Notes
+
+Different models may require different runtime environments and dependency versions. In practice, you should prepare model-specific environments before running evaluation, instead of assuming that a single Python environment will work for every model.
+
+Please adapt the environment according to the official `VLMEvalKit` requirements, especially for dependencies such as `transformers`, `torchvision`, and `flash-attn` when required by specific models. If a target model fails under the current environment, first check the corresponding version recommendations from the original `VLMEvalKit` repository and switch to a matching environment before evaluation.
+
 ## Run
 
 Example commands are provided in `command/`:
