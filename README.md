@@ -155,6 +155,10 @@ You will likely need to adjust:
 - Some datasets require manual download or access approval from their original sources.
 - If a model or dataset is stored locally on your machine, update the corresponding config or environment variable before running.
 
+## Acknowledgement
+
+We thank `VLMEvalKit` for its strong support in evaluating multiple datasets and models, which provides the foundation for the benchmarking workflow used in this repository.
+
 ## License
 
 See [LICENSE](LICENSE).
