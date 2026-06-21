@@ -594,8 +594,8 @@ Respond with only the letter (A, B, C, or D) of the correct option.
         # else:
         for im in frames:
             message.append(dict(type='image', value=im))
-        # message = insert_cap_into_frames(message, frames, aux_data, fps_1_frames_index)
-        message = ablate_cap_into_frames(message, frames, aux_data, fps_1_frames_index, rank)
+        message = insert_cap_into_frames(message, frames, aux_data, fps_1_frames_index)
+        # message = ablate_cap_into_frames(message, frames, aux_data, fps_1_frames_index, rank)
 
         text_prompt = self.FRAMES_TMPL_NOSUB if not self.use_subtitle else self.FRAMES_TMPL_SUB.format(subtitles)
         message.append(dict(type='text', value=text_prompt))
